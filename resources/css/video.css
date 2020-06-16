@@ -1,0 +1,170 @@
+* {
+    box-sizing: border-box;
+}
+
+.title{
+    font-size:1vw;
+}
+
+.description{
+    font-size:0.7vw;
+}
+
+hr{
+    border: 0;
+    height: 1px;
+    background-image: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,0.75), rgba(0,0,0,0));
+}
+
+body {
+    background-color: black;
+}
+
+legend {
+    font-size: 36px;
+    color: #fff;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 59px;
+}
+
+.suggestion-wrap {
+    padding: 0 15px;
+}
+
+.input-field input {
+    height: 100%;
+    width: 100%;
+    background: transparent;
+    border: 0;
+    background: #fff;
+    display: block;
+    width: 100%;
+    padding: 0px 0px 0px 70px;
+    font-size: 18px;
+    color: #666;
+    border-radius: 34px;
+    outline: 0;
+    box-sizing: border-box;
+}
+
+fieldset {
+    width: 100%;
+    max-width: 790px;
+    padding: 0.35em 0.75em 0.625em;
+    margin: 0;
+    padding: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    -webkit-padding-before: 0;
+    -webkit-padding-start: 0;
+    -webkit-padding-end: 0;
+    -webkit-padding-after: 0;
+    border: 0;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: sans-serif;
+    /* 1 */
+    font-size: 100%;
+    /* 1 */
+    line-height: 1.15;
+    /* 1 */
+    margin: 0;
+    /* 2 */
+}
+
+.btn-search svg {
+    width: 26px;
+    height: 26px;
+}
+
+.suggestion-wrap span {
+    font-size: 14px;
+    font-family: 'Helvetica', sans-serif;
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0 15px;
+    line-height: 32px;
+    color: #fff;
+    border-radius: 16px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.btn-search {
+    width: 70px;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    height: 100%;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    display: flex;
+    -ms-flex-pack: center;
+    justify-content: center;
+    align-items: center;
+    outline: 0;
+}
+
+.inner-form {
+    width: 100%;
+    margin-bottom: 17px;
+}
+
+.input-field {
+    height: 70px;
+    width: 100%;
+    position: relative;
+}
+
+form {
+    width: 100%;
+    max-width: 790px;
+}
+
+.main {
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+
+}
+
+#videoFrame {
+    color: white;
+    height: 100vh;
+}
+
+img {
+    width: 100%;
+}
+
+a:link,
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.video {
+    padding: 20px;
+    margin: 20px;
+    border-radius: 5px;
+    max-width: 50vh;
+    background: rgba(255, 255, 255, 0.1);
+    transition: .2s ease-in;
+}
+
+.video:hover{
+    transform:scale(1.02);
+}

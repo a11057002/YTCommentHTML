@@ -1,0 +1,99 @@
+<!Doctype html>
+<html>
+<head>
+	<meta name="referrer" content="no-referrer" /> <!-- 不包含Referrer訊息 -->
+	<meta charset="utf-8">
+	<script type="text/javascript" src="resources/js/jszip.js"></script>
+	<script type="text/javascript" src="resources/js/filesaver.js"></script>
+	<link href="resources/css/comment.css" rel="stylesheet">
+	<link href="resources/css/font.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+	<link href="https://pagecdn.io/lib/easyfonts/fonts.css" rel="stylesheet" />
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script type="text/javascript" src="resources/js/fancybox.js"></script>
+	<script src="https://apis.google.com/js/api.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+</head>
+
+<body>
+  	<canvas id="disabledAll" hidden></canvas>
+	<progress id="progress" max="0" value="0" hidden></progress>
+	<div class="tools">
+		<!-- <button onclick="authenticate()">新增留言</button> -->
+		<button id="test1" disabled onclick="test1(this)">上一頁</button>
+		<button id="test2" onclick="test2(this)">下一頁</button>
+		<select onchange="changeSize(this)">
+			<option selected disabled >顯示留言數</option>
+			<option>10</option>
+ 			<option>30</option> 
+			<option>50</option>
+			<option>100</option>	
+			<option value="0">all</option>		
+		</select> 
+		<span>圓角弧度:</span>
+		<input type="range" id="radius" min="0" max="100" value="0" />
+		<span>名稱文字大小:</span>
+		<input type="range" id="titlesize" min="12" max="20" value="16" />
+		<span>內容文字大小:</span>
+		<input type="range" id="textsize" min="12" max="50" value="12" />
+		<span>背景顏色:</span>
+		<input type="color" id="back" value="#ffffff">
+		<span>名稱文字顏色:</span>
+		<input type="color" id="titlecolor" value="#000000" />
+		<span>內容文字顏色:</span>
+		<input type="color" id="textcolor" value="#000000" />
+		<select id="font">
+			<option selected disabled value="">選擇字型</option>
+			<option value="PMingLiU">新細明體</option>
+			<option value="MingLiU">細明體</option>
+			<option value="DFKai-SB">標楷體</option>
+			<option value="SimHei">黑體</option>
+			<option value="SimSun">宋體</option>
+			<option value="NSimSun">新宋體</option>
+			<option value="KaiTi">楷體</option>
+			<option value="JhengHei">微軟正黑體</option>
+			<option value="font-crushed">font-crushed</option>
+			<option value="font-kranky">font-kranky</option>
+			<option value="font-permanent-marker">font-permanent-marker</option>
+			<option value="font-maiden-orange">font-maiden-orange</option>
+			<option value="font-montez">font-montez</option>
+			<option value="font-satisfy">font-satisfy</option>
+			<option value="cursive">cursive</option>
+			<option value=""></option>
+		</select>
+	</div>
+	<div class="total">
+		<button id="url" data-fancybox href="">觀看影片</button>
+		<div id="numOfComment"></div>
+		<div id="page"></div>
+		<input id="jump" type="text" placeholder="跳轉頁面">
+		<button onclick="gogo()">下載</button>
+	</div>
+    <div class="head" id="canv" ></div>
+	<!--    
+	<div class="pagination">
+		<a th:href="@{'/video/'+${id}+'?size='+${size-10}}">&laquo;</a>
+		<a th:href="@{'/video/'+${id}+'?size='+${size+10}}">&raquo;</a>
+	</div> 
+		
+	<div class="head" id="canv">
+		<div th:each="element:${data}">
+			<div class="comment">
+				<img th:src="${element.getImg()}" ></img>
+				<div>
+					<div>
+						<span class="name" th:text="${element.getName()}"></span>
+						<span class="time" th:text=${element.getTime()}></span>
+					</div>
+					<div class="content" th:text="${element.getText()}"></div>
+				</div>
+			</div> 
+		</div>
+	</div>
+	-->
+	
+</body>
+<script type="text/javascript" src="resources/js/html2canvas.js"></script>
+<script src="resources/js/comment.js"></script>
+<script src="resources/js/youtube.js"></script>
+</html>

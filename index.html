@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="resources/css/video.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="resources/js/fancybox.js"></script>
+
+
+</head>
+
+<body>
+    <div class="main">
+
+        <fieldset id="field">
+            <legend>What are you looking for?</legend>
+            <div class="inner-form">
+                <div class="input-field">
+                    <button class="btn-search" type="button">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                            <path
+                                d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                            </path>
+                        </svg>
+                    </button>
+                    <input id="search" type="text" name="keyword" placeholder="Keyword for video" />
+                </div>
+            </div>
+            <div class="suggestion-wrap">
+                <span>影片名稱</span>
+                <span>頻道名稱</span>
+                <span>關鍵字</span>
+
+            </div>
+        </fieldset>
+        <div id="videoFrame">
+            <!-- <div class="video">
+                <a>
+                    <img src="https://i.ytimg.com/vi/MYdsG-GoWvY/hqdefault.jpg" />
+                    <div class="title">安安闆娘直播-熱烈邀請 館粉的老杯老母 熱烈邀請 館粉的老杯老母來看看 下一代接受什麼樣的教育【冬星娛樂】</div>
+                    <hr>
+                    <div class="description">影片載自臉書：「安安一直很霸氣」 屏東的驕傲！向館長宣戰的女漢子請大家一起全力支持他.</div>
+                </a>
+            </div> -->
+        </div>
+        <div id="fancy" style="display:none;border-radius:15px;">
+            <div style="text-align: center;">
+                <h2 id="fancyTitle"></h2>
+                <span>輸入留言關鍵字:</span>
+                <input id="keyword" type="text" placeholder="空白為全部查詢">
+            </div>
+        </div>
+    </div>
+</body>
+
+<script src="resources/js/video.js"></script>
+
+</html>
