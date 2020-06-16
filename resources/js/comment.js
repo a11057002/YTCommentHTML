@@ -245,7 +245,8 @@ function load()
 async function start(){
 	var videoId = localStorage.getItem('videoId');
 	var keyword = localStorage.getItem('keyword');
-	await fetch("http://localhost:8080/video/"+videoId+"?keyword="+keyword).then((res)=>res.json()).then((r)=>{data = r});
+	// await fetch("http://localhost:8080/video/"+videoId+"?keyword="+keyword).then((res)=>res.json()).then((r)=>{data = r});
+	await fetch("https://yt-downloader-andy.herokuapp.com/video/"+videoId+"?keyword="+keyword).then((res)=>res.json()).then((r)=>{data = r});
 	getId("numOfComment").innerHTML =　"留言總數" + data.length + "則";
 	getId("url").setAttribute("href","https://www.youtube.com/watch?v="+videoId);
 	load();
