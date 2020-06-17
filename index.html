@@ -13,7 +13,7 @@
 
 <body>
     <div class="main">
-
+        <div id="loader" class="loader"></div>
         <fieldset id="field">
             <legend>What are you looking for?</legend>
             <div class="inner-form">
@@ -25,14 +25,13 @@
                             </path>
                         </svg>
                     </button>
-                    <input id="search" type="text" name="keyword" placeholder="Keyword for video" />
+                    <input id="search" type="text" name="keyword" placeholder="Keyword for video" required="required" />
                 </div>
             </div>
             <div class="suggestion-wrap">
                 <span>影片名稱</span>
                 <span>頻道名稱</span>
                 <span>關鍵字</span>
-
             </div>
         </fieldset>
         <div id="videoFrame">

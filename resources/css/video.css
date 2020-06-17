@@ -8,6 +8,7 @@
 
 .description{
     font-size:0.7vw;
+    word-break: break-all;
 }
 
 hr{
@@ -127,11 +128,6 @@ textarea {
     position: relative;
 }
 
-form {
-    width: 100%;
-    max-width: 790px;
-}
-
 .main {
     height: 95vh;
     display: flex;
@@ -167,4 +163,25 @@ a:visited {
 
 .video:hover{
     transform:scale(1.02);
+}
+
+.loader {
+    border: 10px solid transparent;
+    border-top: 10px solid #3498db; 
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    animation: spin 1s linear infinite;
+    display:none;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    30% { transform: rotate(180deg); }
+    60% { transform: rotate(270deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+.width100{
+    width: 100%;
 }

@@ -1,5 +1,6 @@
 <!Doctype html>
 <html>
+
 <head>
 	<meta name="referrer" content="no-referrer" /> <!-- 不包含Referrer訊息 -->
 	<meta charset="utf-8">
@@ -16,27 +17,40 @@
 </head>
 
 <body>
-  	<canvas id="disabledAll" hidden></canvas>
+	<div id="loader" class="loadDiv">
+		<div class="loader"></div>
+	</div>
+	<canvas id="disabledAll" hidden></canvas>
 	<progress id="progress" max="0" value="0" hidden></progress>
 	<div class="tools">
 		<!-- <button onclick="authenticate()">新增留言</button> -->
+		<div id="numOfComment" class="width100"></div>
+		<div id="page" class="width100"></div>
+		<input id="jump" type="text" placeholder="跳轉頁面">
 		<button id="test1" disabled onclick="test1(this)">上一頁</button>
 		<button id="test2" onclick="test2(this)">下一頁</button>
+
 		<select onchange="changeSize(this)">
-			<option selected disabled >顯示留言數</option>
+			<option selected disabled>顯示留言數</option>
 			<option>10</option>
- 			<option>30</option> 
+			<option>30</option>
 			<option>50</option>
-			<option>100</option>	
-			<option value="0">all</option>		
-		</select> 
+			<option>100</option>
+			<option value="0">all</option>
+		</select>
 		<span>圓角弧度:</span>
 		<input type="range" id="radius" min="0" max="100" value="0" />
 		<span>名稱文字大小:</span>
 		<input type="range" id="titlesize" min="12" max="20" value="16" />
 		<span>內容文字大小:</span>
 		<input type="range" id="textsize" min="12" max="50" value="12" />
+		<span>留言背景透明度:</span>
+		<input type="range" id="opacity" min="0" max="1" step="0.01" value="0.5" />
 		<span>背景顏色:</span>
+		<input type="color" id="bodycolor" value="#000000">
+		<span>文字顏色:</span>
+		<input type="color" id="bodyfont" value="#ffffff">
+		<span>留言背景顏色:</span>
 		<input type="color" id="back" value="#ffffff">
 		<span>名稱文字顏色:</span>
 		<input type="color" id="titlecolor" value="#000000" />
@@ -63,37 +77,14 @@
 		</select>
 	</div>
 	<div class="total">
-		<button id="url" data-fancybox href="">觀看影片</button>
-		<div id="numOfComment"></div>
-		<div id="page"></div>
-		<input id="jump" type="text" placeholder="跳轉頁面">
-		<button onclick="gogo()">下載</button>
+		<a id="url" data-fancybox  href=""><button class="width100">觀看影片</button></a>
+		<button class="width100" onclick="gogo()">下載</button>
 	</div>
-    <div class="head" id="canv" ></div>
-	<!--    
-	<div class="pagination">
-		<a th:href="@{'/video/'+${id}+'?size='+${size-10}}">&laquo;</a>
-		<a th:href="@{'/video/'+${id}+'?size='+${size+10}}">&raquo;</a>
-	</div> 
-		
-	<div class="head" id="canv">
-		<div th:each="element:${data}">
-			<div class="comment">
-				<img th:src="${element.getImg()}" ></img>
-				<div>
-					<div>
-						<span class="name" th:text="${element.getName()}"></span>
-						<span class="time" th:text=${element.getTime()}></span>
-					</div>
-					<div class="content" th:text="${element.getText()}"></div>
-				</div>
-			</div> 
-		</div>
-	</div>
-	-->
-	
+	<div class="head" id="canv"></div>
+
 </body>
 <script type="text/javascript" src="resources/js/html2canvas.js"></script>
 <script src="resources/js/comment.js"></script>
 <script src="resources/js/youtube.js"></script>
+
 </html>
