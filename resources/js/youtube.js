@@ -1,9 +1,3 @@
-/**
- * Sample JavaScript code for youtube.commentThreads.insert
- * See instructions for running APIs Explorer code samples locally:
- * https://developers.google.com/explorer-help/guides/code_samples#javascript
- */
-
 function authenticate() {
 	// 認證之 youtube 會員必須是有頻道的
 	return gapi.auth2

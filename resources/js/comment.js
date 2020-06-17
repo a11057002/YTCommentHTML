@@ -295,8 +295,10 @@ async function start() {
 }
 
 getId('loader').style.display = 'flex'
+
 $.fancybox.defaults.btnTpl.changeSize =
 	"<button data-fancybox-changeSize class='fancybox-button' title='changeSize'><svg viewBox='0 0 32 32'><path d='M25,17 L17,17 L17,23 L25,23 L25,17 L25,17 Z M29,25 L29,10.98 C29,9.88 28.1,9 27,9 L9,9 C7.9,9 7,9.88 7,10.98 L7,25 C7,26.1 7.9,27 9,27 L27,27 C28.1,27 29,26.1 29,25 L29,25 Z M27,25.02 L9,25.02 L9,10.97 L27,10.97 L27,25.02 L27,25.02 z'/></svg></button>"
+
 $('body').on('click', '[data-fancybox-changeSize]', function () {
 	var frame = document.getElementsByClassName('fancybox-container')[0]
 	var c = document.getElementsByClassName('fancybox-content')[0]
@@ -314,16 +316,19 @@ $('body').on('click', '[data-fancybox-changeSize]', function () {
 		c.style.height = ''
 		c.style.width = ''
 		s.style.display = 'contents'
+		document.body.style.overflow = "auto";
 	} else {
 		frame.style.width = '100%'
 		frame.style.height = '100%'
 		s.style.display = 'block'
 	}
 })
+
 $('#url').fancybox({
 	css: {
 		display: 'contents'
 	},
 	buttons: ['share', 'changeSize', 'close']
 })
+
 start()
