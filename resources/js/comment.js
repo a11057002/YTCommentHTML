@@ -175,7 +175,7 @@ function add(page) {
 	const mypage = getId('page')
 	canv.innerHTML = ''
 	let pageLength =
-		data.length % size == 0
+		data.length % size == 0 && data.length!=0
 			? Math.floor(data.length / size)
 			: Math.floor(data.length / size)+1
 	if (data.length != size)
