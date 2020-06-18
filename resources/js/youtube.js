@@ -13,7 +13,7 @@ function authenticate() {
 		)
 }
 function loadClient() {
-	gapi.client.setApiKey('AIzaSyA2VC6hQ7HpJpOrLefQA-5bqvhKol3UTs4')
+	gapi.client.setApiKey('AIzaSyAlRaMlfaIHvD_YL_FkiGiqTh-3UNa6U8s')
 	return gapi.client
 		.load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
 		.then(
@@ -53,7 +53,8 @@ function execute(text) {
 		})
 		.then(
 			function (response) {
-				// Handle the results here (response.result has the parsed body).
+        // Handle the results here (response.result has the parsed body).
+        Swal.fire("留言上傳成功","","success")
 				console.log('Response', response)
 			},
 			function (err) {
@@ -63,5 +64,5 @@ function execute(text) {
 }
 
 gapi.load("client:auth2", function() {
-  gapi.auth2.init({client_id: "179500870793-1htoga6ikmpi5is7634gade8do2gvrpl.apps.googleusercontent.com"});
+  gapi.auth2.init({client_id: "173776471481-2o55s1u21o23r5568dtpder7fde7h6t1.apps.googleusercontent.com"});
 });
