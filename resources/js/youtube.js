@@ -1,7 +1,6 @@
 function authenticate() {
 	// 認證之 youtube 會員必須是有頻道的
-	return gapi.auth2
-		.getAuthInstance()
+	return gapi.auth2.getAuthInstance()
 		.signIn({ scope: 'https://www.googleapis.com/auth/youtube.force-ssl' })
 		.then(
 			function () {
@@ -14,7 +13,7 @@ function authenticate() {
 		)
 }
 function loadClient() {
-	gapi.client.setApiKey('AIzaSyBCLxUjVz4OEWDcgqrFGR2qBXqoso6pp-Y')
+	gapi.client.setApiKey('AIzaSyA2VC6hQ7HpJpOrLefQA-5bqvhKol3UTs4')
 	return gapi.client
 		.load('https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest')
 		.then(
@@ -37,6 +36,7 @@ function loadClient() {
 }
 // Make sure the client is loaded and sign-in is complete before calling this method.
 function execute(text) {
+  let videoId = localStorage.getItem("videoId");
 	return gapi.client.youtube.commentThreads
 		.insert({
 			part: ['snippet'],
@@ -62,6 +62,6 @@ function execute(text) {
 		)
 }
 
-// gapi.load("client:auth2", function() {
-//   gapi.auth2.init({client_id: "258989144401-fli5c6ikcfvh2bv79i8jv64ap0rq4ugc.apps.googleusercontent.com"});
-// });
+gapi.load("client:auth2", function() {
+  gapi.auth2.init({client_id: "179500870793-1htoga6ikmpi5is7634gade8do2gvrpl.apps.googleusercontent.com"});
+});

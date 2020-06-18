@@ -4,6 +4,63 @@ var tempsize
 var data
 var commentData = []
 
+const fancyVideo = () => {
+	var frame = document.getElementsByClassName('fancybox-container')[0]
+	var c = document.getElementsByClassName('fancybox-content')[0]
+	var s = document.getElementsByClassName('fancybox-slide')[0]
+	var width = frame.style.width
+	var height = frame.style.height
+	console.log(width == '')
+	if ((width == '') | (width == '100%')) {
+		frame.style.width = '30%'
+		frame.style.height = '30%'
+		frame.style.left = 'auto'
+		frame.style.top = 'auto'
+		frame.style.right = '0'
+		frame.style.bottom = '0'
+		c.style.height = ''
+		c.style.width = ''
+		s.style.display = 'contents'
+		document.body.style.overflow = 'auto'
+	} else {
+		frame.style.width = '100%'
+		frame.style.height = '100%'
+		s.style.display = 'block'
+	}
+}
+
+const addVideo = (data) => {
+	const frame = document.getElementById('videoFrame')
+	for (let i = 0; i < data.length; i++) {
+		let div = document.createElement('div')
+		let a = document.createElement('a')
+		let img = document.createElement('img')
+		let title = document.createElement('div')
+		let description = document.createElement('div')
+
+		div.setAttribute('class', 'video')
+		img.setAttribute('src', data[i].thumbnail)
+		div.onclick = function () {
+			localStorage.setItem('videoId', data[i].videoId)
+			document.getElementById('fancyTitle').innerHTML = data[i].title
+			getId('keyword').value = ''
+			$.fancybox.open($('#fancy'))
+		}
+		title.setAttribute('class', 'title')
+		title.innerHTML = data[i].title
+		description.setAttribute('class', 'description')
+		description.innerHTML = data[i].description
+
+		div.append(a)
+		a.append(img)
+		a.append(title)
+		a.append(document.createElement('hr'))
+		a.append(description)
+
+		frame.append(div)
+	}
+}
+
 const changeBody = () => {
 	document.body.style.background = getId('bodycolor').value
 	document.body.style.color = getId('bodyfont').value
@@ -117,9 +174,12 @@ function add(page) {
 	const canv = getId('canv')
 	const mypage = getId('page')
 	canv.innerHTML = ''
+	let pageLength =
+		data.length % size == 0
+			? Math.floor(data.length / size)
+			: Math.floor(data.length / size)+1
 	if (data.length != size)
-		mypage.innerHTML =
-			'第 ' + (page + 1) + ' / ' + Math.floor(data.length / size + 1) + ' 頁'
+		mypage.innerHTML = '第 ' + (page + 1) + ' / ' + pageLength + ' 頁'
 	else mypage.innerHTML = '第 1/1 頁'
 	let radius = getId('radius').value
 	let back = getId('back').value
@@ -155,11 +215,20 @@ function getTime(time) {
 	return Math.floor(diff) + '秒前'
 }
 
+function backToHome() {
+	location.href = 'index.html'
+}
+
+function backToSearch() {
+	getId('main').style.display = 'flex'
+	getId('sub').style.display = 'none'
+}
+
 function getId(name) {
 	return document.getElementById(name)
 }
 
-function gogo() {
+function download() {
 	var zip = new JSZip()
 	var img = zip.folder('images')
 	var aaa
@@ -250,19 +319,14 @@ function load() {
 	}
 }
 
-async function start() {
+async function search() {
 	var videoId = localStorage.getItem('videoId')
 	var keyword = localStorage.getItem('keyword')
-	// await fetch('http://localhost:8080/video/' + videoId + '?keyword=' + keyword)
-	// 	.then((res) => res.json())
-	// 	.then((r) => {
-	// 		data = r
-	// 	})
-	// await fetch('http://localhost:8080/video/' + videoId,{method:"POST",body:keyword})
-	// 	.then((res) => res.json())
-	// 	.then((r) => {
-	// 		data = r
-	// 	})
+	commentData = []
+	getId('canv').innerHTML = ''
+	getId('loader').style.display = 'flex'
+	getId('sub').style.display = 'none'
+	getId('main').style.display = 'none'
 	await fetch(
 		'https://yt-downloader-andy.herokuapp.com/video/' +
 			videoId +
@@ -273,7 +337,6 @@ async function start() {
 		.then((r) => {
 			data = r
 		})
-	getId('loader').style.display = 'none'
 	getId('numOfComment').innerHTML = '留言總數' + data.length + '則'
 	getId('url').setAttribute(
 		'href',
@@ -281,6 +344,35 @@ async function start() {
 	)
 	load()
 	add(page)
+	getId('loader').style.display = 'none'
+	getId('sub').style.display = 'block'
+}
+
+async function start() {
+	getId('loader').style.display = 'flex'
+	let videokeyword = localStorage.getItem('videokeyword')
+	await fetch(
+		'https://yt-downloader-andy.herokuapp.com/search?keyword=' + videokeyword,
+		{
+			method: 'GET'
+		}
+	)
+		.then((data) => data.json())
+		.then((res) => {
+			document.getElementById('loader').style.display = 'none'
+			addVideo(res)
+		})
+
+	$.fancybox.defaults.btnTpl.changeSize =
+		"<button data-fancybox-changeSize class='fancybox-button' title='changeSize'><svg viewBox='0 0 32 32'><path d='M25,17 L17,17 L17,23 L25,23 L25,17 L25,17 Z M29,25 L29,10.98 C29,9.88 28.1,9 27,9 L9,9 C7.9,9 7,9.88 7,10.98 L7,25 C7,26.1 7.9,27 9,27 L27,27 C28.1,27 29,26.1 29,25 L29,25 Z M27,25.02 L9,25.02 L9,10.97 L27,10.97 L27,25.02 L27,25.02 z'/></svg></button>"
+	$('#url').fancybox({
+		css: {
+			display: 'contents'
+		},
+		buttons: ['share', 'changeSize', 'close']
+	})
+
+	$('body').on('click', '[data-fancybox-changeSize]', fancyVideo)
 	getId('radius').addEventListener('change', changeRadius)
 	getId('opacity').addEventListener('change', changeBack)
 	getId('back').addEventListener('change', changeBack)
@@ -292,43 +384,16 @@ async function start() {
 	getId('font').addEventListener('change', changeFont)
 	getId('titlesize').addEventListener('change', changeTitleSize)
 	getId('textsize').addEventListener('change', changeTextSize)
+	getId('keyword').addEventListener('keypress', (e) => {
+		if (e.key == 'Enter') {
+			let value = encodeURI(getId('keyword').value)
+			localStorage.setItem('keyword', value)
+			$.fancybox.close($('#fancy'))
+			search()
+		}
+	})
+	getId('loader').style.display = 'none'
+	getId('main').style.display = 'flex'
 }
-
-getId('loader').style.display = 'flex'
-
-$.fancybox.defaults.btnTpl.changeSize =
-	"<button data-fancybox-changeSize class='fancybox-button' title='changeSize'><svg viewBox='0 0 32 32'><path d='M25,17 L17,17 L17,23 L25,23 L25,17 L25,17 Z M29,25 L29,10.98 C29,9.88 28.1,9 27,9 L9,9 C7.9,9 7,9.88 7,10.98 L7,25 C7,26.1 7.9,27 9,27 L27,27 C28.1,27 29,26.1 29,25 L29,25 Z M27,25.02 L9,25.02 L9,10.97 L27,10.97 L27,25.02 L27,25.02 z'/></svg></button>"
-
-$('body').on('click', '[data-fancybox-changeSize]', function () {
-	var frame = document.getElementsByClassName('fancybox-container')[0]
-	var c = document.getElementsByClassName('fancybox-content')[0]
-	var s = document.getElementsByClassName('fancybox-slide')[0]
-	var width = frame.style.width
-	var height = frame.style.height
-	console.log(width == '')
-	if ((width == '') | (width == '100%')) {
-		frame.style.width = '30%'
-		frame.style.height = '30%'
-		frame.style.left = 'auto'
-		frame.style.top = 'auto'
-		frame.style.right = '0'
-		frame.style.bottom = '0'
-		c.style.height = ''
-		c.style.width = ''
-		s.style.display = 'contents'
-		document.body.style.overflow = "auto";
-	} else {
-		frame.style.width = '100%'
-		frame.style.height = '100%'
-		s.style.display = 'block'
-	}
-})
-
-$('#url').fancybox({
-	css: {
-		display: 'contents'
-	},
-	buttons: ['share', 'changeSize', 'close']
-})
 
 start()
